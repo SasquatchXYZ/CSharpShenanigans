@@ -1,3 +1,4 @@
+using System.Data;
 using System.Data.SqlClient;
 using CSharpShenanigans.Dapper.Models;
 using Dapper;
@@ -6,10 +7,10 @@ namespace CSharpShenanigans.Dapper;
 
 public class DapperDemo
 {
+    string connectionString = "Server=.;Database=DapperDemo;Trusted_Connection=True;";
+
     public async Task TestDapperDemo()
     {
-        string connectionString = "Server=.;Database=DapperDemo;Trusted_Connection=True;";
-
         using (var connection = new SqlConnection(connectionString))
         {
             connection.Open();
@@ -39,6 +40,36 @@ public class DapperDemo
             string deleteSql = "DELETE FROM Users WHERE Id = @Id"; // Assuming Id=1 exists
             affectedRows = await connection.ExecuteAsync(deleteSql, new { Id = 1 });
             Console.WriteLine($"Deleted {affectedRows} rows user(s).");
+        }
+    }
+
+    public async Task TestDapperDemoStoredProcedure()
+    {
+        using (var connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            using (var multi = await connection.QueryMultipleAsync("sp_GetUserAndOrders", new { UserId = 3 },
+                       commandType: CommandType.StoredProcedure))
+            {
+                var user = (await multi.ReadAsync<User>()).FirstOrDefault();
+
+                var orders = (await multi.ReadAsync<Order>()).ToList();
+
+                if (user is null)
+                {
+                    Console.WriteLine("No user found.");
+                    return;
+                }
+
+                Console.WriteLine($"User: {user.FirstName} {user.LastName}");
+
+                Console.WriteLine($"Orders:");
+                foreach (var order in orders)
+                {
+                    Console.WriteLine($"Order Date: {order.OrderDate}, Amount: {order.Amount}");
+                }
+            }
         }
     }
 }
