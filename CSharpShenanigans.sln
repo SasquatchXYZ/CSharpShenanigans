@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpShenanigans", "CSharpShenanigans\CSharpShenanigans.csproj", "{EB1E261B-24B2-4143-884C-B922F31470D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFGetStarted", "EFGetStarted\EFGetStarted.csproj", "{F4F6A281-1224-4689-8EFB-6E052035C79C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{EB1E261B-24B2-4143-884C-B922F31470D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB1E261B-24B2-4143-884C-B922F31470D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB1E261B-24B2-4143-884C-B922F31470D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F6A281-1224-4689-8EFB-6E052035C79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F6A281-1224-4689-8EFB-6E052035C79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F6A281-1224-4689-8EFB-6E052035C79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F6A281-1224-4689-8EFB-6E052035C79C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
